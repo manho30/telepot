@@ -20,7 +20,6 @@ class RunForeverAsThread(object):
         t.daemon = True
         t.start()
 
-
 class CollectLoop(RunForeverAsThread):
     def __init__(self, handle):
         self._handle = handle
@@ -108,7 +107,10 @@ def _extract_message(update):
                                    'inline_query',
                                    'chosen_inline_result',
                                    'shipping_query',
-                                   'pre_checkout_query'])
+                                   'pre_checkout_query',
+                                   'poll'])
+    if not key:
+        return key, update
     return key, update[key]
 
 def _infer_handler_function(bot, h):
